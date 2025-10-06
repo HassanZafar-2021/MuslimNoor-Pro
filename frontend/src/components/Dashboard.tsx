@@ -27,10 +27,12 @@ function Dashboard() {
                 </div>
                 </Link>
                 
+                <Link to="/quran-reader" style={{ textDecoration: 'none' }}>
                 <div className="dashboard-card">
                     <h3>📖 Read Quran</h3>
                     <p>Read the Holy Quran with translations</p>
                 </div>
+                </Link>
                 
                 <div className="dashboard-card">
                     <h3>🤖 AI Assistant</h3>

@@ -3,6 +3,8 @@ import './App.css'
 import Dashboard from './components/Dashboard'
 import PrayerTimes from './components/PrayerTimes'
 import QiblaCompass from './components/QiblaCompass'
+import QuranReader from './components/QuranReader'
+
 
 function App() {
   return (
@@ -12,13 +14,12 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/prayer-times" element={<PrayerTimes />} />
           <Route path="/qibla-compass" element={<QiblaCompass />} />
+          <Route path="/quran-reader" element={<QuranReader />} />
           
         </Routes>
       </div>
     </Router>
   )
 }
-
-
 
 export default App
