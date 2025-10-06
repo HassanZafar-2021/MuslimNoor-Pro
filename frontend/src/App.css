@@ -69,3 +69,99 @@
 .prayer-times-button:hover {
   background-color: #0056b3;
 }
+
+/* Dashboard Styles */
+.dashboard-card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+.dashboard-card:hover {
+  background-color: #e9ecef;
+  border-color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.dashboard-card h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.dashboard-card p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.back-button {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #545b62;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Qibla Compass Styles */
+.qibla-compass-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.compass {
+  width: 200px;
+  height: 200px;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: radial-gradient(circle, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.needle {
+  font-size: 24px;
+  transition: transform 0.5s ease;
+  transform-origin: center;
+}
+
+.back-button {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: limegreen;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+
+}
+
+.back-button:hover {
+  background-color: green;
+  transform: scale(1.05);
+  transition: transform 0.2s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

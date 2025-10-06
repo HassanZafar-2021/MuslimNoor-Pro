@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CalculationMethod, Coordinates, PrayerTimes as AdhanPrayerTimes} from 'adhan';
 import '../App.css';
 
 function PrayerTimes() {
+
+    const navigate = useNavigate();
     const [activePrayer, setActivePrayer] = useState<string | null>(null);
     const [userLocation, setUserLocation] = useState<{latitude: number, longitude: number} | null>(null);
     const [prayerTimes, setPrayerTimes] = useState({
@@ -79,6 +82,11 @@ function PrayerTimes() {
 
     return (
         <div className="prayer-times-container">
+            <button 
+                onClick={() => navigate('/')} 
+                className="back-button">
+                Go Back
+            </button>
             <h2>Prayer Times</h2>
             {userLocation ? (
                 <div>

@@ -1,14 +1,18 @@
-import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
+import Dashboard from './components/Dashboard'
+import PrayerTimes from './components/PrayerTimes'
 
 function App() {
-  const [message] = useState("Salam, welcome to MuslimNoor-Pro!")
   return (
-    <div className="header">
-     <p>{message}</p>      
-   </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/prayer-times" element={<PrayerTimes />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }
 
