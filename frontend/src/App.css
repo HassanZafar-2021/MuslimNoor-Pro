@@ -155,6 +155,8 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   margin: 10px;
+  color: #f0f415;
+  background-color: #333;
 }
 
 .prayer-times-grid {
@@ -176,6 +178,28 @@
 
 .prayer-times-button:hover {
   background-color: #0056b3;
+}
+
+/* Small spinner for loading states */
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.prayer-times-button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Dashboard Styles */
