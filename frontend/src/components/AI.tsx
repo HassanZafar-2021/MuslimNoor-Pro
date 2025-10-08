@@ -11,6 +11,7 @@ function AI() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        console.log('AI form submitted with input:', input);
         setLoading(true);
         setError(null);
         

@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard'
 import PrayerTimes from './components/PrayerTimes'
 import QiblaCompass from './components/QiblaCompass'
 import QuranReader from './components/QuranReader'
+import AI from './components/AI'
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
           <Route path="/prayer-times" element={<PrayerTimes />} />
           <Route path="/qibla-compass" element={<QiblaCompass />} />
           <Route path="/quran-reader" element={<QuranReader />} />
-          
+          <Route path="/ai" element={<AI />} />
         </Routes>
       </div>
     </Router>
