@@ -5,7 +5,7 @@ import PrayerTimes from './components/PrayerTimes'
 import QiblaCompass from './components/QiblaCompass'
 import QuranReader from './components/QuranReader'
 import AI from './components/AI'
-import LocalMosque from './components/localmosque'
+import LocalMosque from './components/LocalMosque';
 import Duas from './components/Duas'
 
 
