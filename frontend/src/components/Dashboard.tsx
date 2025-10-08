@@ -52,6 +52,12 @@ function Dashboard() {
                     <p>Ask questions about Islam</p>
                 </div>
                 </Link>
+                <Link to="/local-mosque" style={{ textDecoration: 'none' }}>
+                <div className="dashboard-card">
+                    <h3>📍 Local Mosques</h3>
+                    <p>Find nearby mosques</p>
+                </div>
+                </Link>
             </div>
         </div>
     );

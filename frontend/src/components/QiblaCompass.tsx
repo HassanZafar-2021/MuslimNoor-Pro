@@ -157,11 +157,11 @@ function QiblaCompass() {
                 className="back-button">
                     Go Back 
             </button>
-            <h2>Qibla Compass</h2>
+            <h2 className='bold-text'>Qibla Compass</h2>
             {direction !== null && userLocation ? (
                 <div>
-                    <p><strong>Your Location:</strong> {userLocation.latitude.toFixed(2)}, {userLocation.longitude.toFixed(2)}</p>
-                    <p><strong>Qibla Direction:</strong> {direction.toFixed(1)}° from North</p>
+                    <p className='bold-text'><strong>Your Location:</strong> {userLocation.latitude.toFixed(2)}, {userLocation.longitude.toFixed(2)}</p>
+                    <p className='bold-text'><strong>Qibla Direction:</strong> {direction.toFixed(1)}° from North</p>
                     <div className="compass">
                         <div className="compass-circle">
                             <div className="compass-north">N</div>
@@ -175,10 +175,10 @@ function QiblaCompass() {
                                                     <div className="qibla-arrow" ref={arrowRef} aria-hidden="true" />
                                                 </div>
                     </div>
-                    <p>The Kaaba icon points toward Mecca</p>
+                    <p className='bold-text'>The Kaaba icon points toward Mecca</p>
                 </div>
             ) : (
-                <p>Getting your location for accurate Qibla direction...</p>
+                <p className='bold-text'>Getting your location for accurate Qibla direction...</p>
             )}
         </div>
     );
