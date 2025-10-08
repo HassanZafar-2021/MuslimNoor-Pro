@@ -14,6 +14,7 @@ const PrayerTimes: React.FC = () => {
   const [manualLng, setManualLng] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
+  // Simple audio element ref for playing the adhan from public/adhan.mp3
   const adhanAudioRef = useRef<HTMLAudioElement | null>(null);
 
   const calculatePrayerTimes = useCallback(() => {
@@ -153,8 +154,40 @@ const PrayerTimes: React.FC = () => {
     if (userLocation) calculatePrayerTimes();
   }, [userLocation, calculatePrayerTimes]);
 
-  const playAdhanAudio = () => {
-    if (adhanAudioRef.current) adhanAudioRef.current.play().catch(e => console.error('Adhan play error', e));
+  // Ensure audio element is preloaded and ready
+  useEffect(() => {
+    const a = adhanAudioRef.current;
+    if (!a) return;
+    try {
+      a.preload = 'auto';
+      // load() may be a no-op but won't hurt
+      a.load();
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  const playAdhanAudio = async () => {
+    const a = adhanAudioRef.current;
+    if (!a) {
+      console.warn('Adhan audio element not available');
+      return;
+    }
+    try {
+      // start from the beginning
+      a.currentTime = 0;
+      const p = a.play();
+      if (p && typeof p.then === 'function') {
+        await p;
+      }
+    } catch (err) {
+      console.error('Adhan play error', err);
+      // Inform user when browser blocks playback (feature detection)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (err && (err as any).name === 'NotAllowedError') {
+        alert('Playback was blocked by the browser. Please interact with the page (click) and try again, or enable audio for this site.');
+      }
+    }
   };
 
   return (
@@ -186,7 +219,15 @@ const PrayerTimes: React.FC = () => {
               'Refresh Prayer Times'
             )}
           </button>
-          <audio ref={adhanAudioRef} src="/adhan.mp3" />
+          <audio
+            ref={adhanAudioRef}
+            src="/adhan.mp3"
+            preload="auto"
+            playsInline
+            onCanPlay={() => console.log('Adhan audio can play')}
+            onError={(ev) => console.error('Adhan audio error', ev)}
+            aria-hidden="true"
+          />
           <button onClick={playAdhanAudio} className="prayer-times-button">Play Adhan</button>
         </div>
       ) : (

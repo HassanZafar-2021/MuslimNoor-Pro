@@ -75,7 +75,8 @@ function QuranReader() {
             {!selectedSurah ? (
                 // Surah list view
                 <div className="surah-list">
-                    <h3>Select a Surah</h3>
+                    <h3 className='surah-header'>Select a Surah</h3>
+                    <br></br>
                     {surahs.map((surah) => (
                         <div 
                             key={surah.number}
