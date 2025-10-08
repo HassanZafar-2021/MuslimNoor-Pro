@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 
 // Routes
 const placesRoutes = require('./routes/places');
+const duasRoutes = require('./routes/duas');
 
 // Load env
 dotenv.config();
@@ -18,7 +19,7 @@ app.use(helmet());
 
 // Rate limiting
 app.use('/api/', rateLimit({
-    windowMs: 15 * 60 * 1000,
+    windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100,
     message: 'Too many requests, try again later'
 }));
@@ -39,6 +40,7 @@ app.get('/health', (req, res) => {
 
 // Routes
 app.use('/api/places', placesRoutes);
+app.use('/api/duas', duasRoutes);
 
 // Error & 404
 app.use((err, req, res, next) => {
@@ -47,4 +49,13 @@ app.use((err, req, res, next) => {
 });
 app.use('*', (req, res) => res.status(404).json({ error: 'Route not found' }));
 
-app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
+// Server start
+app.listen(PORT, () => {
+    console.log(`🚀 MuslimNoor-Pro Backend running on port ${PORT}`);
+    console.log(`📱 Health check: http://localhost:${PORT}/health`);
+    console.log(`🤖 AI endpoint: http://localhost:${PORT}/api/ai`);
+    console.log(`🕌 Prayer times: http://localhost:${PORT}/api/prayer`);
+    console.log(`📖 Quran data: http://localhost:${PORT}/api/quran`);
+    console.log(`🕌 Local mosque finder: http://localhost:${PORT}/api/places`);
+    console.log(`📚 Dua list: http://localhost:${PORT}/api/duas`);
+});

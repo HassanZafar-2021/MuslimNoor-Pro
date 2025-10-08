@@ -42,7 +42,7 @@
 @keyframes header-spin {
   0% {
     transform: scale(1);
-    color: black;
+    color: white;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   }
   33% {
@@ -65,6 +65,7 @@
 .custom-border {
   border: 30px solid transparent; /* Required for border-image to work */
   border-image: url("../public/border.png") 30 round;
+  background-color: #212529;
 }
 
 .header-text {
@@ -231,7 +232,7 @@
   font-size: 14px;
 }
 
-.background-image {
+.my-image {
   background-image: url("../public/night-background.jpg");
   background-size: cover;
   background-position: center;
@@ -339,6 +340,64 @@
   font-size: 24px;
   transition: transform 0.5s ease;
   transform-origin: center;
+}
+
+.duas-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+}
+
+.duas-search {
+  width: 80%;
+  max-width: 400px;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.duas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.dua-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  background-color: #f9f9f9;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dua-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dua-arabic {
+  font-family: 'Scheherazade', 'Amiri', serif; /* nice Arabic fonts */
+  font-size: 1.5rem;
+  direction: rtl;
+  text-align: right;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.dua-translation {
+  font-size: 1rem;
+  color: #555;
+}
+
+.error-text {
+  color: red;
+  font-weight: bold;
 }
 
 .needle-container {

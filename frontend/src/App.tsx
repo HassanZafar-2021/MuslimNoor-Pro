@@ -6,6 +6,7 @@ import QiblaCompass from './components/QiblaCompass'
 import QuranReader from './components/QuranReader'
 import AI from './components/AI'
 import LocalMosque from './components/localmosque'
+import Duas from './components/Duas'
 
 
 function App() {
@@ -17,8 +18,10 @@ function App() {
           <Route path="/prayer-times" element={<PrayerTimes />} />
           <Route path="/qibla-compass" element={<QiblaCompass />} />
           <Route path="/quran-reader" element={<QuranReader />} />
-          <Route path="/ai" element={<AI />} />
+          <Route path="/duas" element={<Duas />} />
           <Route path="/local-mosque" element={<LocalMosque />} />
+          <Route path="/ai" element={<AI />} />
+
         </Routes>
       </div>
     </Router>
