@@ -4,6 +4,8 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
-  "forceConsistentCasingInFileNames": true,
-  "strict": true
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "strict": true
+  }
 }
