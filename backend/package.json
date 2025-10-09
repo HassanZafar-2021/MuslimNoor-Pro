@@ -4,10 +4,11 @@
   "description": "Backend API for MuslimNoor-Pro Islamic companion app",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd ../frontend && npm install && npm run build"
+  "start": "node src/app.js",
+  "start:prod": "cd ../frontend && npm ci && npm run build && cd ../backend && node src/app.js",
+  "dev": "nodemon src/app.js",
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "build": "cd ../frontend && npm install && npm run build"
   },
   "keywords": ["islamic", "prayer", "quran", "ai", "muslim"],
   "author": "Hassan Zafar",
