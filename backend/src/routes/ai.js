@@ -54,6 +54,17 @@ router.post('/', async (req, res) => {
         // Initialize OpenAI client
         const openai = initializeOpenAI();
         if (!openai) {
+            // If no OpenAI key set, allow a local development fallback so the
+            // frontend can be tested without returning 500. In production we
+            // keep strict behavior and return an error.
+            if (process.env.NODE_ENV !== 'production') {
+                console.warn('OpenAI key not set — returning local mock response for development');
+                return res.json({
+                    response: `Mock response (dev): I received your input: "${String(input).slice(0,200)}". Replace with a real OpenAI API key in production.`,
+                    timestamp: new Date().toISOString()
+                });
+            }
+
             return res.status(500).json({
                 error: 'Service configuration error',
                 message: 'AI service is not properly configured'

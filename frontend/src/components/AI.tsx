@@ -16,7 +16,8 @@ function AI() {
         setError(null);
         
         try {
-            const response = await fetch('http://localhost:5000/api/ai', {
+            const BACKEND = import.meta.env.VITE_BACKEND_URL ?? '';
+            const response = await fetch(`${BACKEND}/api/ai`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,9 +32,9 @@ function AI() {
             const data = await response.json();
             setOutput(data.response);
             setInput(''); // Clear input after successful submission
-        } catch (err) {
-            setError('Failed to connect to AI service. Please try again.');
-            console.error(err);
+        } catch (err: unknown) {
+            console.error('AI fetch error:', err);
+            setError(err instanceof Error ? err.message : 'Failed to connect to AI service. Please try again.');
         } finally {
             setLoading(false);
         }

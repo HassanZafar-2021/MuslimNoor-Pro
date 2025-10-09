@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 // Routes
 const placesRoutes = require('./routes/places');
 const duasRoutes = require('./routes/duas');
+const aiRoutes = require('./routes/ai');
 
 // Load env
 dotenv.config();
@@ -41,6 +42,7 @@ app.get('/health', (req, res) => {
 // Routes
 app.use('/api/places', placesRoutes);
 app.use('/api/duas', duasRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Error & 404
 app.use((err, req, res, next) => {
