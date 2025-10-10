@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef, useCallback} from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 
@@ -29,28 +29,33 @@ function QuranReader() {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('http://api.alquran.cloud/v1/quran/en.asad');
-            
+            // ✅ Use HTTPS to avoid mixed content issues
+            const response = await fetch('https://api.alquran.cloud/v1/quran/en.asad');
+
             if (!response.ok) {
                 throw new Error('Failed to fetch Quran data');
             }
-            
+
             const data = await response.json();
+
+            // Safety: ensure data exists
+            if (!data?.data?.surahs) {
+                throw new Error('Invalid API response structure');
+            }
+
             setSurahs(data.data.surahs);
-        } catch(err) {
-            setError("Failed to fetch Surahs.");
+        } catch (err) {
+            setError("Failed to fetch Surahs. Please try again later.");
             console.error(err);
         } finally {
             setLoading(false);
         }
     }, []);
 
-    // Call the API when component loads
     useEffect(() => {
         fetchQuran();
     }, [fetchQuran]);
 
-    // Handle surah selection
     const handleSurahSelect = (surahNumber: number) => {
         setSelectedSurah(surahNumber);
         const selectedSurahData = surahs.find(surah => surah.number === surahNumber);
@@ -73,10 +78,9 @@ function QuranReader() {
             {error && <p className="error-text">{error}</p>}
             
             {!selectedSurah ? (
-                // Surah list view
                 <div className="surah-list">
                     <h3 className='surah-header'>Select a Surah</h3>
-                    <br></br>
+                    <br />
                     {surahs.map((surah) => (
                         <div 
                             key={surah.number}
@@ -89,7 +93,6 @@ function QuranReader() {
                     ))}
                 </div>
             ) : (
-                // Verses view
                 <div className="verses-container">
                     <button 
                         onClick={() => setSelectedSurah(null)}

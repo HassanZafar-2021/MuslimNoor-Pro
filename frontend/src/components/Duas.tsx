@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 
@@ -16,33 +16,41 @@ function Duas() {
 
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 
-
-  const fetchDuas = async (searchQuery: string = '') => {
+  // Fetch duas from backend
+  const fetchDuas = useCallback(async (searchQuery: string = '') => {
     try {
       setLoading(true);
       setError(null);
+
       const res = await fetch(`${BACKEND_URL}/api/duas?q=${encodeURIComponent(searchQuery)}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
       const data = await res.json();
-      setDuas(data.duas || []);
+
+      if (!data?.duas) {
+        throw new Error('Invalid response from server');
+      }
+
+      setDuas(data.duas);
     } catch (err: unknown) {
       console.error('Error fetching duas:', err);
       setError(err instanceof Error ? err.message : String(err));
+      setDuas([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, [BACKEND_URL]);
 
   // Load all duas on mount
   useEffect(() => {
     fetchDuas();
-  }, [BACKEND_URL]);
+  }, [fetchDuas]);
 
   // Live search with debounce
   useEffect(() => {
     const timeout = setTimeout(() => fetchDuas(query), 300);
     return () => clearTimeout(timeout);
-  }, [query]);
+  }, [query, fetchDuas]);
 
   return (
     <div className="duas-container">
