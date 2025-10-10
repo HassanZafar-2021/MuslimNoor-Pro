@@ -7,19 +7,19 @@ function Dashboard() {
     return (
         <div className='custom-border'>
             <aside className='side'>
-                <img src="../../public/moon-icon.png" alt='Moon Icon' id='moon1' />
+                <img src="/moon-icon.png" alt='Moon Icon' id='moon1' />
             </aside>
 
             <aside className='side'>
-                <img src="../../public/moon-icon.png" alt='Star Icon' id='moon2'/>
+                <img src="/moon-icon.png" alt='Moon Icon' id='moon2'/>
             </aside>
 
             <aside className='side'>
-                <img src="../../public/moon-icon.png" alt='Star Icon' id='moon3'/>
+                <img src="/moon-icon.png" alt='Moon Icon' id='moon3'/>
             </aside>
 
             <aside className='side'>
-                <img src="../../public/moon-icon.png" alt='Star Icon' id='moon4'/>
+                <img src="/moon-icon.png" alt='Moon Icon' id='moon4'/>
             </aside>
 
             <h1 className='header-text'>{message}</h1>
