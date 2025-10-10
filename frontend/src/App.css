@@ -66,6 +66,12 @@
   border: 30px solid transparent; /* Required for border-image to work */
   border-image: url("../public/border.png") 30 round;
   background-color: #212529;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  padding: 20px;
+
 }
 
 .header-text {
@@ -77,8 +83,17 @@
   font-weight: bold;
   font-size: 30px;
   text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 3px;
+  
 }
 
+.header-text:hover {
+  filter: drop-shadow(0 0 2em white);
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
 .side {
   position: absolute;
 }
@@ -212,6 +227,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   background-color: #f9f9f9;
+  
 }
 
 .dashboard-card:hover {
@@ -615,3 +631,22 @@
 .manual-label {
   margin-left: 8px;
 }
+
+/* mobile friendlyness */
+
+@media (max-width: 600px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .prayer-times-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashbaord-card {
+    margin: 0 auto;
+    max-width: 300px;
+    padding: 15px;
+    font-size: 14px;
+
+  }
+}
+
