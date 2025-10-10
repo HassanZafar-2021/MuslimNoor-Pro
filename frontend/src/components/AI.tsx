@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import '../App.css';
 
 function AI() {
+    
     const navigate = useNavigate();
     const [input, setInput] = useState<string>('');
     const [output, setOutput] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-
+    
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log('AI form submitted with input:', input);
@@ -17,6 +18,10 @@ function AI() {
         
         try {
             const BACKEND = import.meta.env.VITE_BACKEND_URL ?? '';
+            if (!BACKEND) {
+                console.log('Backend URL is not defined');
+                return;
+            }
             const response = await fetch(`${BACKEND}/api/ai`, {
                 method: 'POST',
                 headers: {
