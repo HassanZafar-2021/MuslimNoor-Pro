@@ -26,11 +26,29 @@ app.use(
         message: 'Too many requests, try again later',
     })
 );
+
+// ✅ CORS configuration (production-safe)
+const allowedOrigins = [
+    'http://localhost:5173',               // local dev
+    process.env.FRONTEND_URL || ''         // live frontend from .env
+];
+
 app.use(
     cors({
-        origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+        origin: function (origin, callback) {
+            // Allow requests with no origin (curl/Postman)
+            if (!origin) return callback(null, true);
+            if (allowedOrigins.includes(origin)) {
+                return callback(null, true);
+            } else {
+                console.warn(`❌ CORS blocked for origin: ${origin}`);
+                return callback(new Error('Not allowed by CORS'));
+            }
+        },
+        credentials: true,
     })
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
